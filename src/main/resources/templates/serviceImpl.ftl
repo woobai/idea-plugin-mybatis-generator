@@ -23,10 +23,20 @@ import org.springframework.stereotype.Service;
  * @since ${.now?string("yyyy-MM-dd HH:mm")}
  */
 @Service
-<#if superServiceImplClass?? && superServiceImplClass !="">
-public class ${serviceImplName} extends ${superServiceImplClassName}<${mapperName}, ${entityName}> implements ${serviceName} {
+<#if serviceSelectedGenerateCheckBox == false>
+ <#if superServiceImplClass?? && superServiceImplClass !="">
+public class ${serviceImplName} extends ${superServiceImplClassName}<${mapperName}, ${entityName}> {
+ <#else>
+public class ${serviceImplName} {
+ </#if>
 <#else>
+ <#if superServiceImplClass?? && superServiceImplClass !="">
+public class ${serviceImplName} extends ${superServiceImplClassName}<${mapperName}, ${entityName}> implements ${serviceName} {
+ <#else>
 public class ${serviceImplName} implements ${serviceName} {
+ </#if>
 </#if>
+
+
 
 }

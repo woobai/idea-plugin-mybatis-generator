@@ -133,6 +133,7 @@ public class GeneratorSettingUI extends DialogWrapper {
     private JButton autoSetPackageAndPathBtn;
     private JButton modulePathBtn;
     private JTextField entityRelativePackageTf;
+    private JTextField removePrefix;
     private JScrollPane packageAndPathJscrollPane;
 
     private JButton restConfigBtn;
@@ -639,6 +640,7 @@ public class GeneratorSettingUI extends DialogWrapper {
         // 公共配置
         CommonProperties commonProperties = new CommonProperties();
         commonProperties.setAuthor(StringUtils.trim(authorTf.getText()));
+        commonProperties.setTablePrefix(StringUtils.trim(removePrefix.getText()));
         commonProperties.setModulePath(modulePathTf.getText());
         commonProperties.setModuleName(this.baseModuleName);
         commonProperties.setBasePackage(basePackageTf.getText());

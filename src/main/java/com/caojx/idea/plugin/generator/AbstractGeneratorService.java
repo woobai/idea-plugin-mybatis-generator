@@ -98,14 +98,18 @@ public abstract class AbstractGeneratorService implements IGeneratorService {
 
         GeneratorProperties generatorProperties = generatorContext.getGeneratorProperties();
 
+        // 公共配置
+        CommonProperties commonProperties = generatorProperties.getCommonProperties();
+
+        // 表前缀
+        String tablePrefix = commonProperties.getTablePrefix();
+
         // 表名转基础驼峰
-        String baseEntityName = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableInfo.getName());
+        String baseEntityName = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableInfo.getName().replace(tablePrefix,""));
 
         // 表信息
         objectMap.put("table", tableInfo);
 
-        // 公共配置
-        CommonProperties commonProperties = generatorProperties.getCommonProperties();
         objectMap.put("author", commonProperties.getAuthor());
         objectMap.put("frameworkType", commonProperties.getFrameworkTypeComboBoxValue());
 
@@ -167,6 +171,7 @@ public abstract class AbstractGeneratorService implements IGeneratorService {
         objectMap.put("superServiceClass", serviceProperties.getSuperServiceClass());
         objectMap.put("superServiceClassName", ClassUtils.getClassNameByFullClassName(serviceProperties.getSuperServiceClass()));
         objectMap.put("superServiceClassPackage", ClassUtils.getPackageNameByFullClassName(serviceProperties.getSuperServiceClass()));
+        objectMap.put("serviceSelectedGenerateCheckBox",serviceProperties.isSelectedGenerateCheckBox());
 
         // serviceImpl
         ServiceImplProperties serviceImplProperties = generatorProperties.getServiceImplProperties();

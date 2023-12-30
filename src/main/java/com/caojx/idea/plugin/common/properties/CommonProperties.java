@@ -21,6 +21,11 @@ public class CommonProperties implements Serializable {
     private String author;
 
     /**
+     * 表前缀
+     */
+    private String tablePrefix;
+
+    /**
      * 模块名称
      */
     private String moduleName;
@@ -72,6 +77,14 @@ public class CommonProperties implements Serializable {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getTablePrefix() {
+        return tablePrefix;
+    }
+
+    public void setTablePrefix(String tablePrefix) {
+        this.tablePrefix = tablePrefix;
     }
 
     public String getModuleName() {
